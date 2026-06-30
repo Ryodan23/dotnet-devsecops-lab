@@ -1,0 +1,11 @@
+workflow-aggregator
+git
+github
+credentials
+credentials-binding
+docker-workflow
+email-ext
+mailer
+sonar
+pipeline-stage-view
+blueocean

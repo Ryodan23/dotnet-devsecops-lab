@@ -1,0 +1,178 @@
+# =========================
+# .NET / Visual Studio
+# =========================
+bin/
+obj/
+.vs/
+.vscode/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+bld/
+[Bb]uild/
+[Ll]og/
+
+# Rider / JetBrains
+.idea/
+*.sln.iml
+
+# =========================
+# Test Results / Coverage
+# =========================
+TestResults/
+coverage/
+coverage.cobertura.xml
+coverage.opencover.xml
+*.coverage
+*.coveragexml
+*.trx
+
+# Coverlet
+coverage.json
+lcov.info
+
+# =========================
+# NuGet
+# =========================
+*.nupkg
+*.snupkg
+packages/
+project.lock.json
+project.assets.json
+
+# Aunque normalmente project.assets.json está en obj/,
+# lo dejamos explícito por seguridad.
+
+# =========================
+# Docker
+# =========================
+.docker/
+docker-compose.override.yml
+docker-compose.*.override.yml
+
+# Logs de contenedores o exports locales
+*.log
+logs/
+
+# =========================
+# Kubernetes / ArgoCD local
+# =========================
+*.kubeconfig
+kubeconfig
+.kube/
+k8s/secrets/
+kubernetes/secrets/
+argocd/secrets/
+
+# No subir manifests con secretos reales
+*secret*.yaml
+*secret*.yml
+*.secret.yaml
+*.secret.yml
+
+# =========================
+# Environment files
+# =========================
+.env
+.env.*
+!.env.example
+
+# =========================
+# SonarQube / Scanner
+# =========================
+.sonarqube/
+.scannerwork/
+sonar-report.json
+
+# =========================
+# OWASP Dependency Check
+# =========================
+dependency-check-report.html
+dependency-check-report.xml
+dependency-check-report.json
+dependency-check-data/
+odc-reports/
+
+# =========================
+# Trivy
+# =========================
+trivy-report.*
+trivy-cache/
+.trivy/
+
+# =========================
+# Snyk
+# =========================
+.snyk-token
+snyk-report.*
+.snyk-cache/
+
+# =========================
+# Jenkins local data
+# =========================
+jenkins_home/
+.jenkins/
+
+# =========================
+# Prometheus / Grafana local volumes
+# =========================
+prometheus_data/
+grafana_data/
+alertmanager_data/
+
+# =========================
+# Local databases / volumes
+# =========================
+data/
+db_data/
+postgres_data/
+mysql_data/
+mssql_data/
+redis_data/
+
+*.db
+*.sqlite
+*.sqlite3
+
+# =========================
+# Certificates / Keys / Tokens
+# =========================
+*.pem
+*.key
+*.crt
+*.pfx
+*.p12
+*.cer
+id_rsa
+id_rsa.pub
+*.token
+*.pat
+secrets.json
+
+# =========================
+# OS files
+# =========================
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# =========================
+# Temporary files
+# =========================
+tmp/
+temp/
+*.tmp
+*.bak
+*.swp
+*.orig
