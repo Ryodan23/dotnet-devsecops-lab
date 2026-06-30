@@ -70,17 +70,22 @@ pipeline {
 
         stage('OWASP Dependency Check') {
             steps {
-                sh '''
-                    mkdir -p dependency-check-report
+                withCredentials([string(credentialsId: 'nvd-api-key', variable: 'NVD_API_KEY')]) {
+                    sh '''
+                        mkdir -p dependency-check-report
+                        mkdir -p /var/jenkins_home/dependency-check-data
 
-                    dependency-check \
-                    --project "demo-api" \
-                    --scan . \
-                    --format "HTML" \
-                    --format "JSON" \
-                    --out dependency-check-report \
-                    --disableAssembly
-                '''
+                        dependency-check \
+                        --project "${APP_NAME}" \
+                        --scan . \
+                        --format "HTML" \
+                        --format "JSON" \
+                        --out dependency-check-report \
+                        --data /var/jenkins_home/dependency-check-data \
+                        --nvdApiKey "$NVD_API_KEY" \
+                        --disableAssembly
+                    '''
+                }
             }
             post {
                 always {
