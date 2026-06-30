@@ -12,6 +12,7 @@ RUN apt-get update && apt-get install -y \
     ca-certificates \
     gnupg \
     lsb-release \
+    libicu-dev \
     && rm -rf /var/lib/apt/lists/*
 
 # Install .NET SDK 8
