@@ -71,18 +71,20 @@ pipeline {
         stage('OWASP Dependency Check') {
             steps {
                 sh '''
+                    mkdir -p dependency-check-report
+
                     dependency-check \
-                      --project "demo-api" \
-                      --scan . \
-                      --format "HTML" \
-                      --format "JSON" \
-                      --out dependency-check-report \
-                      --disableAssembly
+                    --project "demo-api" \
+                    --scan . \
+                    --format "HTML" \
+                    --format "JSON" \
+                    --out dependency-check-report \
+                    --disableAssembly
                 '''
             }
             post {
                 always {
-                    archiveArtifacts artifacts: 'dependency-check-report/**', fingerprint: true
+                    archiveArtifacts artifacts: 'dependency-check-report/**', fingerprint: true, allowEmptyArchive: true
                 }
             }
         }
