@@ -13,6 +13,8 @@ pipeline {
 
         SMTP_HOST = 'mailhog'
         SMTP_PORT = '1025'
+
+        DOTNET_PROJECT = 'src/DemoApi/DemoApi.csproj'
     }
 
     options {
@@ -27,22 +29,37 @@ pipeline {
             }
         }
 
+        stage('Debug Workspace') {
+            steps {
+                sh '''
+                    echo "Workspace actual:"
+                    pwd
+
+                    echo "Contenido raíz:"
+                    ls -la
+
+                    echo "Proyectos encontrados:"
+                    find . -maxdepth 5 \\( -name "*.sln" -o -name "*.csproj" \\)
+                '''
+            }
+        }
+
         stage('Dotnet Restore') {
             steps {
-                sh 'dotnet restore'
+                sh 'dotnet restore $DOTNET_PROJECT'
             }
         }
 
         stage('Dotnet Build') {
             steps {
-                sh 'dotnet build --configuration Release --no-restore'
+                sh 'dotnet build $DOTNET_PROJECT --configuration Release --no-restore'
             }
         }
 
         stage('Dotnet Test + Coverage') {
             steps {
                 sh '''
-                    dotnet test \
+                    dotnet test $DOTNET_PROJECT \
                       --configuration Release \
                       --no-build \
                       --collect:"XPlat Code Coverage" \
@@ -83,7 +100,7 @@ pipeline {
                           /d:sonar.host.url="${SONAR_HOST_URL}" \
                           /d:sonar.token="${SONAR_TOKEN}"
 
-                        dotnet build --configuration Release
+                        dotnet build $DOTNET_PROJECT --configuration Release
 
                         dotnet sonarscanner end \
                           /d:sonar.token="${SONAR_TOKEN}"
